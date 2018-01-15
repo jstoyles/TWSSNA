@@ -7,7 +7,16 @@ if(!empty($_POST['s']))
 }
 else
 {
-    $result = $db->execStoredProcedure('spGetLatestTWSSNAComments', array());
+    //$m->delete('latest_comments_cache');
+    if($m->get('latest_comments_cache'))
+    {
+        $result = $m->get('latest_comments_cache');
+    }
+    else
+    {
+        $result = $db->execStoredProcedure('spGetLatestTWSSNAComments', array());
+        $m->add('latest_comments_cache', $result, 10);
+    }
 }
 ?>
 <section>

@@ -14,5 +14,7 @@ if(!empty($_POST))
     <form action="/delete-comment/" method="post">
         <input type="hidden" name="gid" value="<?php echo $_GET['gid']; ?>" />
         <input type="submit" value="DELETE" />
+        <br />
+        <span class="red">Results are updated every 10 seconds.</span>
     </form>
 </section>
