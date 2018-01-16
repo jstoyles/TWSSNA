@@ -10,8 +10,8 @@ $db = new DB();
 
 session_start();
 ob_start();
-//ini_set('display_errors', 'off');
-//error_reporting(0);
+ini_set('display_errors', 'off');
+error_reporting(0);
  
 // Connection creation
 $m = new Memcached();
