@@ -2,7 +2,11 @@
 $error = '';
 if(!empty($_POST))
 {
-    if($_POST['p'] != $_POST['p2'])
+    if(empty($_POST['u']) || empty($_POST['p']))
+    {
+        $error = 'All fields required';
+    }
+    else if($_POST['p'] != $_POST['p2'])
     {
         $error = 'Your passwords do not match';
     }
@@ -21,16 +25,16 @@ if(!empty($_POST))
         }
     }
 }
-if(!empty($error))
-{
 ?>
 <section>
-    <span class="bad-message"><?php echo 'Error - ' . $error; ?></span>
-</section>
-<?php
-}
-?>
-<section>
+    <?php
+    if(!empty($error))
+    {
+    ?>
+    <p class="bad-message"><?php echo 'Error - ' . $error; ?></p>
+    <?php
+    }
+    ?>
     <h3>JOIN</h3>
     <form action="/join/" method="post">
         <label>Username</label>

@@ -1,3 +1,4 @@
+<section>
 <?php
 if(!empty($_POST))
 {
@@ -12,14 +13,11 @@ if(!empty($_POST))
     else
     {
 ?>
-<section>
-    <span class="bad-message">INVALID LOGIN</span>
-</section>
+    <p class="bad-message">Invalid Login</p>
 <?php
     }
 }
 ?>
-<section>
     <h3>LOGIN</h3>
     <form action="/login/" method="post">
         <label>Username</label>
