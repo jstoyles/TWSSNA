@@ -2,6 +2,7 @@
 if(!empty($_POST))
 {
     $result = $db->execStoredProcedure('spTWSSADeleteComment', array($_POST['gid'], $_SESSION['user']['guid']));
+    $_SESSION["user"]["numComments"] = $result[0]['numComments'];
     ob_end_clean();
     header('Location: /');
 }

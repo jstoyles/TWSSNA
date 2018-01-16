@@ -2,6 +2,7 @@
 if(!empty($_POST))
 {
     $result = $db->execStoredProcedure('spTWSSAInsertComment', array($_SESSION['user']['id'], $_POST['c']));
+    $_SESSION["user"]["numComments"] = $result[0]['numComments'];
     ob_end_clean();
     header('Location: /');
 }

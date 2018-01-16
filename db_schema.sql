@@ -46,7 +46,7 @@ SQL SECURITY DEFINER
 COMMENT ''
 BEGIN
 
-SELECT c.id, c.userID, c.`comment`, c.dateAdded, c.guid, u.username
+SELECT c.id, c.userID, c.`comment`, c.dateAdded, c.guid, u.username, u.numComments
 FROM twssna_comments c
 INNER JOIN twssna_users u ON u.id = c.userID
 ORDER BY c.dateAdded DESC
@@ -102,7 +102,9 @@ SET @userID = (SELECT id FROM twssna_users WHERE guid = iUserGUID);
 
 DELETE FROM twssna_comments WHERE guid = iCommentGUID AND userID = @userID;
 
-SELECT 0 AS error, 'Comment Removed' AS message;
+UPDATE twssna_users SET numComments = numComments-1 WHERE id = @userID;
+
+SELECT 0 AS error, 'Comment Removed' AS message, numComments FROM twssna_users WHERE id = @userID;
 
 END
  ;;
@@ -128,7 +130,7 @@ VALUES(iUserID, iComment, NOW(), @guid);
 
 UPDATE twssna_users SET numComments = numComments+1 WHERE id = iUserID;
 
-SELECT 0 AS error, 'Comment Added' AS message;
+SELECT 0 AS error, 'Comment Added' AS message, numComments FROM twssna_users WHERE id = iUserID;
 
 END
  ;;
@@ -168,7 +170,7 @@ SQL SECURITY DEFINER
 COMMENT ''
 BEGIN
 
-SELECT DISTINCT c.id, c.userID, c.`comment`, c.dateAdded, c.guid, u.username
+SELECT DISTINCT c.id, c.userID, c.`comment`, c.dateAdded, c.guid, u.username, u.numComments
 FROM (
 SELECT c.id, c.userID, c.`comment`, c.dateAdded, c.guid, MATCH(c.`comment`) AGAINST (iSearchTerm IN NATURAL LANGUAGE MODE) AS score
 FROM twssna_comments c

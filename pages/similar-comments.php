@@ -25,6 +25,7 @@ if($result)
             <p><?php echo $comment; ?></p>
             <details>
                 <summary>By <?php echo $username; ?> (click for details)</summary>
+                <p>Number comments by this user: <?php echo $numComments; ?></p>
                 <p>Number of unicode characters: <?php echo strlen(bin2hex($comment)); ?></p>
                 <p>Number of two-letter words: <?php echo two_letter_word_count($comment); ?></p>
                 <p>Number of capital letters: <?php echo capital_letter_count($comment); ?></p>

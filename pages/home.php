@@ -44,6 +44,7 @@ if($result)
         $dateAdded = $r['dateAdded'];
         $guid = $r['guid'];
         $username = $r['username'];
+        $numComments = $r['numComments'];
 
         $unicodeCharacters = strlen(bin2hex($comment));
         $twoLetterWordCount = two_letter_word_count($comment);
@@ -64,6 +65,7 @@ if($result)
             </p>
             <details>
                 <summary>By <?php echo $username; ?> (click for details)</summary>
+                <p>Number comments by this user: <?php echo $numComments; ?></p>
                 <p>Number of unicode characters: <?php echo $unicodeCharacters; ?></p>
                 <p>Number of two-letter words: <?php echo $twoLetterWordCount; ?></p>
                 <p>Number of capital letters: <?php echo $capitalLetterCount; ?></p>
