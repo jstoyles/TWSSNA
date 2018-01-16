@@ -16,7 +16,7 @@ function two_letter_word_count($str)
 
 function capital_letter_count($str)
 {
-	return strlen(preg_replace('/[^A-Za-z]+/', '', $str));
+	return strlen(preg_replace('/[^A-Z]+/', '', $str));
 }
 
 function longest_word($str)
